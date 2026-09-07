@@ -1,0 +1,25 @@
+{
+  "name": "smart-expense-budget-manager-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node node_modules/vite/bin/vite.js build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "lucide-react": "^1.39.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "^7.18.3",
+    "recharts": "latest"
+  },
+  "devDependencies": {
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "tailwindcss": "^3.4.17",
+    "vite": "latest"
+  }
+}

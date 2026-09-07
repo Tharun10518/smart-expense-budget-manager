@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: smart-expense-budget-manager
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smart_expense_db
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+server:
+  port: ${SERVER_PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: ${JWT_EXPIRATION:86400000}
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}

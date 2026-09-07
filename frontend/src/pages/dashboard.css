@@ -1,0 +1,44 @@
+.dashboard-v2 { max-width: 1180px; }
+.dashboard-hero { align-items: end; margin-bottom: 28px; }
+.dashboard-welcome { margin: 8px 0 0; color: #718078; }
+.dashboard-refresh { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
+.dashboard-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+.analytics-stat-grid { grid-template-columns: repeat(3, 1fr); }
+.dashboard-stat, .dashboard-panel { border: 1px solid #dce6dd; border-radius: 12px; background: #fff; }
+.dashboard-stat { display: flex; align-items: center; gap: 14px; padding: 20px; }
+.dashboard-stat-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 11px; }
+.dashboard-stat p, .dashboard-stat strong { display: block; margin: 0; }
+.dashboard-stat p { color: #718078; font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.dashboard-stat strong { margin-top: 5px; color: #173523; font-size: 1.35rem; }
+.dashboard-stat.balance .dashboard-stat-icon { color: #126b4d; background: #d7eee0; }
+.dashboard-stat.income .dashboard-stat-icon { color: #2470a8; background: #dcecf8; }
+.dashboard-stat.expense .dashboard-stat-icon { color: #b65a38; background: #fae5dc; }
+.dashboard-stat.budget .dashboard-stat-icon { color: #936517; background: #f8edcf; }
+.dashboard-stat.remaining .dashboard-stat-icon { color: #2470a8; background: #dcecf8; }.dashboard-stat.usage .dashboard-stat-icon { color: #7b6cae; background: #eeeafd; }
+.dashboard-main-grid, .dashboard-secondary-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(300px, .85fr); gap: 18px; margin-bottom: 18px; }
+.dashboard-secondary-grid { grid-template-columns: minmax(0, 1fr) minmax(300px, .8fr); }
+.dashboard-panel { padding: 22px; }
+.analytics-chart-grid, .analytics-lower-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px; }.chart-panel { min-width: 0; }.analytics-empty { min-height: 280px; display: grid; place-content: center; justify-items: center; gap: 9px; color: #849188; text-align: center; }.analytics-empty p { margin: 0; font-size: .84rem; }.dashboard-empty-panel { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; color: #126b4d; }.dashboard-empty-panel h2 { margin: 0 0 5px; color: #173523; font-size: 1rem; }.dashboard-empty-panel p { margin: 0; color: #718078; font-size: .84rem; }.empty-actions { display: flex; align-items: center; gap: 9px; margin-left: auto; }.empty-actions .primary-button, .empty-actions .secondary-button { display: inline-flex; align-items: center; gap: 7px; margin: 0; white-space: nowrap; }.comparison-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }.comparison-values span, .comparison-values strong { display: block; }.comparison-values span { color: #849188; font-size: .75rem; }.comparison-values strong { margin-top: 5px; color: #173523; font-size: .95rem; }.comparison-bar { height: 13px; margin: 24px 0 10px; overflow: hidden; border-radius: 8px; background: #edf2ed; }.comparison-spent { display: block; height: 100%; border-radius: inherit; background: #d8754d; }.insight-message { min-height: 96px; display: flex; align-items: center; gap: 12px; padding: 18px; border-radius: 10px; color: #126b4d; background: #edf7f0; }.insight-message p { margin: 0; color: #315542; font-size: .9rem; line-height: 1.5; }.insight-warning { color: #b65a38; background: #fff0e9; }.insight-warning p { color: #764534; }.recent-empty { min-height: 120px; }.recent-empty .empty-actions { margin: 0; }
+.dashboard-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; color: #6f8175; }
+.dashboard-panel-heading h2 { margin: 3px 0 0; color: #173523; font-size: 1.12rem; }
+.dashboard-panel-heading .eyebrow { margin: 0; }
+.text-link { display: inline-flex; align-items: center; gap: 5px; color: #126b4d; font-size: .8rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
+.dashboard-transactions { display: grid; gap: 2px; }
+.dashboard-transaction { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #edf2ed; }
+.dashboard-transaction:last-child { border-bottom: 0; }
+.transaction-badge { width: 34px; height: 34px; display: grid; flex: 0 0 auto; place-items: center; border-radius: 10px; }
+.transaction-badge.transaction-income { color: #2470a8; background: #dcecf8; }
+.transaction-badge.transaction-expense { color: #b65a38; background: #fae5dc; }
+.transaction-copy { min-width: 0; flex: 1; }
+.transaction-copy strong, .transaction-copy span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.transaction-copy strong { color: #173523; font-size: .9rem; }
+.transaction-copy span, .monthly-summary span, .budget-amounts span { color: #849188; font-size: .76rem; }
+.positive-value { color: #19704f !important; }.negative-value { color: #b65a38 !important; }
+.monthly-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; }
+.monthly-summary span, .monthly-summary strong, .budget-amounts span, .budget-amounts strong { display: block; }
+.monthly-summary strong { margin-top: 6px; color: #173523; font-size: 1.08rem; }
+.category-list { display: grid; gap: 17px; }.category-row > div:first-child, .budget-amounts, .budget-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }.category-row span { color: #51635a; font-size: .84rem; }.category-row strong { color: #173523; font-size: .85rem; }.category-track, .budget-track { height: 7px; margin-top: 8px; overflow: hidden; border-radius: 8px; background: #edf2ed; }.category-track span, .budget-track span { display: block; height: 100%; border-radius: inherit; background: #2a9b70; }.budget-track { height: 11px; margin: 22px 0 9px; }.budget-track span { background: #d8754d; }.budget-meta { color: #718078; font-size: .78rem; }.budget-meta strong { color: #b65a38; }.panel-note { margin: 18px 0 0; color: #849188; font-size: .8rem; }
+.quick-panel { margin-bottom: 20px; }.quick-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }.quick-action { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 14px; border: 1px solid #dce6dd; border-radius: 9px; color: #173523; font-size: .82rem; font-weight: 800; text-decoration: none; }.quick-action span { display: flex; align-items: center; gap: 8px; }.quick-action span svg { color: #126b4d; }.quick-action:hover { border-color: #9bc9ae; background: #f4faf5; }.dashboard-panel .data-state { min-height: 150px; border: 0; padding: 12px; background: transparent; }
+@media (max-width: 900px) { .dashboard-stat-grid, .analytics-stat-grid { grid-template-columns: repeat(2, 1fr); }.dashboard-main-grid, .dashboard-secondary-grid, .analytics-chart-grid, .analytics-lower-grid { grid-template-columns: 1fr; }.quick-actions { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .dashboard-stat-grid, .analytics-stat-grid, .quick-actions { grid-template-columns: 1fr; }.dashboard-stat { padding: 16px; }.dashboard-panel { padding: 18px 16px; }.dashboard-hero { align-items: stretch; }.dashboard-refresh { justify-content: center; }.dashboard-transaction { gap: 9px; }.dashboard-transaction > strong { font-size: .8rem; }.dashboard-welcome { line-height: 1.45; }.dashboard-empty-panel { align-items: flex-start; flex-wrap: wrap; }.dashboard-empty-panel > div:nth-child(2) { flex: 1; min-width: 200px; }.dashboard-empty-panel .empty-actions { width: 100%; margin-left: 0; }.empty-actions .primary-button, .empty-actions .secondary-button { flex: 1; justify-content: center; }.comparison-values strong { font-size: .85rem; } }
+@media (prefers-color-scheme: dark) { .dashboard-stat, .dashboard-panel { border-color: #345341; background: #1d3026; }.dashboard-stat strong, .dashboard-panel-heading h2, .transaction-copy strong, .monthly-summary strong, .category-row strong, .quick-action, .dashboard-empty-panel h2, .comparison-values strong { color: #eff8f1; }.dashboard-welcome, .dashboard-stat p, .transaction-copy span, .monthly-summary span, .budget-amounts span, .panel-note, .dashboard-empty-panel p, .comparison-values span { color: #9ab1a1; }.dashboard-transaction { border-color: #345341; }.quick-action { border-color: #345341; }.quick-action:hover { background: #243d2d; }.insight-message { background: #203d2c; }.insight-message p { color: #c3dfcb; }.insight-warning { background: #493126; }.insight-warning p { color: #f0c2ad; } }

@@ -1,0 +1,26 @@
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Backend
+backend/target/
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Compose secrets
+.env
+.env.*
+!.env.example
+
+# IDE and OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.iml
+.DS_Store
+Thumbs.db

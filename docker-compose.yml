@@ -1,0 +1,63 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: smart-expense-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-smart_expense}
+      POSTGRES_USER: ${DATABASE_USERNAME:?DATABASE_USERNAME must be set}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?DATABASE_PASSWORD must be set}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - smart-expense-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: smart-expense-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-smart_expense}
+      DATABASE_USERNAME: ${DATABASE_USERNAME:?DATABASE_USERNAME must be set}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:?DATABASE_PASSWORD must be set}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-86400000}
+      SERVER_PORT: 8080
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    networks:
+      - smart-expense-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: smart-expense-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    networks:
+      - smart-expense-network
+    depends_on:
+      - backend
+
+networks:
+  smart-expense-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
