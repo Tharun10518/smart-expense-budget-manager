@@ -2,7 +2,7 @@ spring:
   application:
     name: smart-expense-budget-manager
   datasource:
-    url: jdbc:postgresql://localhost:5432/smart_expense_db
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/smart_expense_db}
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
   jpa:

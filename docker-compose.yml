@@ -4,7 +4,7 @@ services:
     container_name: smart-expense-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-smart_expense}
+      POSTGRES_DB: ${POSTGRES_DB:-smart_expense_db}
       POSTGRES_USER: ${DATABASE_USERNAME:?DATABASE_USERNAME must be set}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?DATABASE_PASSWORD must be set}
     ports:
@@ -27,7 +27,7 @@ services:
     container_name: smart-expense-backend
     restart: unless-stopped
     environment:
-      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-smart_expense}
+      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-smart_expense_db}
       DATABASE_USERNAME: ${DATABASE_USERNAME:?DATABASE_USERNAME must be set}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD:?DATABASE_PASSWORD must be set}
       JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set}
