@@ -75,7 +75,7 @@ pipeline {
                     sh '''
                         set -eu
                         export DATABASE_USERNAME="postgres"
-                        docker compose up -d
+                        docker compose -p smart-expense-budget-manager up -d
                     '''
                 }
             }
@@ -93,27 +93,13 @@ pipeline {
             }
         }
     }
-        stage('Deploy Application') {
-            steps {
-                withCredentials([
-                    string(credentialsId: 'postgres-password', variable: 'DATABASE_PASSWORD'),
-                    string(credentialsId: 'jwt-secret', variable: 'JWT_SECRET')
-                ]) {
-                    sh '''
-                        set -eu
-                        export DATABASE_USERNAME="postgres"
-                        docker compose -p smart-expense-budget-manager up -d
-                    '''
-                }
-            }
-        }
 
     post {
         success {
-            echo 'CI pipeline completed successfully.'
+            echo 'CI/CD pipeline completed successfully.'
         }
         failure {
-            echo 'CI pipeline failed. Review the stage logs for details.'
+            echo 'CI/CD pipeline failed. Review the stage logs for details.'
         }
     }
 }
