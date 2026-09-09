@@ -65,6 +65,33 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy Application') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'postgres-password', variable: 'DATABASE_PASSWORD'),
+                    string(credentialsId: 'jwt-secret', variable: 'JWT_SECRET')
+                ]) {
+                    sh '''
+                        set -eu
+                        export DATABASE_USERNAME="postgres"
+                        docker compose up -d
+                    '''
+                }
+            }
+        }
+
+        stage('Deployment Health Check') {
+            steps {
+                sh '''
+                    set -eu
+                    sleep 10
+                    status="$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' http://localhost:8080/actuator/health || true)"
+                    echo "Deployment health check HTTP status: ${status}"
+                    test "${status}" = "200"
+                '''
+            }
+        }
     }
 
     post {
