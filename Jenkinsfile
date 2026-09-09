@@ -93,6 +93,20 @@ pipeline {
             }
         }
     }
+        stage('Deploy Application') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'postgres-password', variable: 'DATABASE_PASSWORD'),
+                    string(credentialsId: 'jwt-secret', variable: 'JWT_SECRET')
+                ]) {
+                    sh '''
+                        set -eu
+                        export DATABASE_USERNAME="postgres"
+                        docker compose -p smart-expense-budget-manager up -d
+                    '''
+                }
+            }
+        }
 
     post {
         success {

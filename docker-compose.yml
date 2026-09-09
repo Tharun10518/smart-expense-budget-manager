@@ -1,7 +1,6 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: smart-expense-postgres
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-smart_expense_db}
@@ -24,7 +23,6 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: smart-expense-backend
     restart: unless-stopped
     environment:
       DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-smart_expense_db}
@@ -46,7 +44,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: smart-expense-frontend
     restart: unless-stopped
     ports:
       - "${FRONTEND_PORT:-5173}:80"
