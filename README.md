@@ -128,3 +128,4 @@ The frontend and backend are independently buildable so CI can run focused check
 4. Budgets and usage tracking
 5. Financial dashboard, charts, and reports
 6. Spending insights, profile management, testing, observability, and delivery automation
+
