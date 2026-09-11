@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: smart-expense-budget-manager-backend:latest
+          image: 182312754343.dkr.ecr.ap-south-1.amazonaws.com/smart-expense-budget-manager-backend:latest
           ports:
             - containerPort: 8080
           env:

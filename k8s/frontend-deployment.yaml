@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: smart-expense-frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: smart-expense-frontend
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: smart-expense-budget-manager-frontend:latest
+          image: 182312754343.dkr.ecr.ap-south-1.amazonaws.com/smart-expense-budget-manager-frontend:latest
           ports:
             - containerPort: 80
