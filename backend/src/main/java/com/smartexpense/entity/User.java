@@ -80,4 +80,12 @@ public class User extends BaseEntity {
     public List<Notification> getNotifications() {
         return notifications;
     }
+
+    public void updateProfile(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public void updatePassword(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 }

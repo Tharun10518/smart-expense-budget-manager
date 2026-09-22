@@ -16,7 +16,8 @@ export function AuthProvider({ children }) {
   useEffect(() => { if (!token) return; authService.getCurrentUser(token, logout).then(setCurrentUser).catch(() => logout()) }, [])
   const login = async (credentials) => { const response = await authService.login(credentials); const user = await authService.getCurrentUser(response.token, logout); setToken(response.token); setCurrentUser(user); sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ token: response.token, user })); navigate('/dashboard', { replace: true }) }
   const register = (details) => authService.register(details)
-  return <AuthContext.Provider value={{ currentUser, token, isAuthenticated: Boolean(token), login, logout, register }}>{children}</AuthContext.Provider>
+  const updateCurrentUser = (updatedUser) => { setCurrentUser(updatedUser); sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ token, user: updatedUser })) }
+  return <AuthContext.Provider value={{ currentUser, token, isAuthenticated: Boolean(token), login, logout, register, updateCurrentUser }}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() { return useContext(AuthContext) }

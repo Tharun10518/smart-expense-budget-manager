@@ -1,0 +1,213 @@
+.insights-page { max-width: 1180px; margin: auto; }
+.insights-intro { margin: 8px 0 0; color: #718078; }
+.insights-actions { display: flex; align-items: center; gap: 10px; }
+.insights-refresh { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
+
+.insights-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.insight-metric-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #dce6dd;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.insight-metric-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+}
+
+.insight-metric-card p {
+  margin: 0;
+  color: #718078;
+  font-size: .74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.insight-metric-card strong {
+  display: block;
+  margin-top: 4px;
+  color: #173523;
+  font-size: 1.25rem;
+}
+
+.insight-metric-card.income .insight-metric-icon { color: #2470a8; background: #dcecf8; }
+.insight-metric-card.expense .insight-metric-icon { color: #b65a38; background: #fae5dc; }
+.insight-metric-card.savings .insight-metric-icon { color: #126b4d; background: #d7eee0; }
+.insight-metric-card.budget .insight-metric-icon { color: #936517; background: #f8edcf; }
+.insight-metric-card.transactions .insight-metric-icon { color: #7b6cae; background: #eeeafd; }
+
+.insights-section-heading {
+  margin: 0 0 16px;
+  color: #173523;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.insights-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.smart-insight-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #dce6dd;
+  border-radius: 12px;
+  background: #fff;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.smart-insight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.smart-insight-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+
+.tone-success .smart-insight-tag { color: #19704f; background: #d7eee0; }
+.tone-warning .smart-insight-tag { color: #936517; background: #f8edcf; }
+.tone-danger .smart-insight-tag { color: #b65a38; background: #fae5dc; }
+.tone-info .smart-insight-tag { color: #2470a8; background: #dcecf8; }
+
+.smart-insight-card h3 {
+  margin: 0 0 8px;
+  color: #173523;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.smart-insight-card p {
+  margin: 0 0 14px;
+  color: #4b5d53;
+  font-size: .88rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.smart-insight-recommendation {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: .82rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.tone-success .smart-insight-recommendation { color: #126b4d; background: #edf7f0; }
+.tone-warning .smart-insight-recommendation { color: #7f5713; background: #fdf8eb; }
+.tone-danger .smart-insight-recommendation { color: #8e3f26; background: #fdf0eb; }
+.tone-info .smart-insight-recommendation { color: #195b8a; background: #edf5fb; }
+
+.insights-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.budget-health-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.budget-health-table th,
+.budget-health-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #edf2ed;
+  font-size: .82rem;
+}
+
+.budget-health-table th {
+  color: #829087;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.budget-health-bar {
+  height: 8px;
+  width: 100%;
+  max-width: 120px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #edf2ed;
+}
+
+.budget-health-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: width .3s ease;
+}
+
+@media (max-width: 1000px) {
+  .insights-metrics-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .insights-cards-grid, .insights-charts-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .insights-metrics-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .insight-metric-card, .smart-insight-card {
+    border-color: #345341;
+    background: #1d3026;
+  }
+  .insight-metric-card strong, .smart-insight-card h3, .insights-section-heading {
+    color: #eff8f1;
+  }
+  .insights-intro, .insight-metric-card p {
+    color: #9ab1a1;
+  }
+  .smart-insight-card p {
+    color: #c5dacb;
+  }
+  .tone-success .smart-insight-tag { color: #a9e2c2; background: #244735; }
+  .tone-warning .smart-insight-tag { color: #f2d58c; background: #4e4124; }
+  .tone-danger .smart-insight-tag { color: #f0b29b; background: #4b2e25; }
+  .tone-info .smart-insight-tag { color: #a5d3f2; background: #1e3c50; }
+
+  .tone-success .smart-insight-recommendation { color: #c0f0d6; background: #1b3828; }
+  .tone-warning .smart-insight-recommendation { color: #fae4b2; background: #3b321a; }
+  .tone-danger .smart-insight-recommendation { color: #fcd5c5; background: #3d241c; }
+  .tone-info .smart-insight-recommendation { color: #c4e5fc; background: #183040; }
+
+  .budget-health-table th { color: #9ab1a1; }
+  .budget-health-table td { color: #c5dacb; border-color: #345341; }
+  .budget-health-bar { background: #263e30; }
+}
+

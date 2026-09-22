@@ -39,6 +39,11 @@ public class GlobalExceptionHandler {
         return error(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
 
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<ApiError> handleInvalidPassword(InvalidPasswordException exception) {
+        return error(HttpStatus.BAD_REQUEST, exception.getMessage());
+    }
+
     @ExceptionHandler({BadCredentialsException.class, UnauthorizedException.class})
     public ResponseEntity<ApiError> handleUnauthorized(Exception exception) {
         return error(HttpStatus.UNAUTHORIZED, "Invalid email or password");

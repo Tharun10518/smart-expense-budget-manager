@@ -1,11 +1,14 @@
 package com.smartexpense.service;
 
 import com.smartexpense.dto.AuthResponse;
+import com.smartexpense.dto.ChangePasswordRequest;
 import com.smartexpense.dto.LoginRequest;
 import com.smartexpense.dto.RegisterRequest;
+import com.smartexpense.dto.UpdateProfileRequest;
 import com.smartexpense.dto.UserResponse;
 import com.smartexpense.entity.User;
 import com.smartexpense.exception.DuplicateEmailException;
+import com.smartexpense.exception.InvalidPasswordException;
 import com.smartexpense.repository.UserRepository;
 import com.smartexpense.security.CustomUserDetails;
 import com.smartexpense.security.JwtService;
@@ -54,6 +57,22 @@ public class AuthService {
 
     private String normalizeEmail(String email) {
         return email.trim().toLowerCase(Locale.ROOT);
+    }
+
+    public UserResponse updateProfile(User user, UpdateProfileRequest request) {
+        user.updateProfile(request.fullName().trim());
+        return toResponse(userRepository.save(user));
+    }
+
+    public void changePassword(User user, ChangePasswordRequest request) {
+        if (!passwordEncoder.matches(request.currentPassword(), user.getPasswordHash())) {
+            throw new InvalidPasswordException("Current password is incorrect");
+        }
+        if (passwordEncoder.matches(request.newPassword(), user.getPasswordHash())) {
+            throw new InvalidPasswordException("New password must be different from current password");
+        }
+        user.updatePassword(passwordEncoder.encode(request.newPassword()));
+        userRepository.save(user);
     }
 
     public UserResponse toResponse(User user) {

@@ -30,4 +30,10 @@ public class NotificationController {
     public NotificationResponse markAsRead(@PathVariable UUID id) {
         return notificationService.markAsRead(id);
     }
+
+    @PutMapping("/read-all")
+    public org.springframework.http.ResponseEntity<Void> markAllAsRead() {
+        notificationService.markAllAsRead();
+        return org.springframework.http.ResponseEntity.noContent().build();
+    }
 }

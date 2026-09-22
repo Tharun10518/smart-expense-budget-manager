@@ -94,6 +94,45 @@ class AuthServiceTest {
         verify(jwtService, never()).generateToken(any());
     }
 
+    @Test
+    void updateProfileUpdatesDisplayName() {
+        User user = new User("john@example.com", "bcrypt-hash", "John Doe");
+        when(userRepository.save(user)).thenReturn(user);
+        AuthService authService = service();
+
+        UserResponse response = authService.updateProfile(user, new com.smartexpense.dto.UpdateProfileRequest("Jane Doe"));
+
+        assertEquals("Jane Doe", response.fullName());
+        assertEquals("Jane Doe", user.getDisplayName());
+        verify(userRepository).save(user);
+    }
+
+    @Test
+    void changePasswordSucceedsWithValidCurrentPassword() {
+        User user = new User("john@example.com", "bcrypt-hash", "John Doe");
+        when(passwordEncoder.matches("OldPassword123!", "bcrypt-hash")).thenReturn(true);
+        when(passwordEncoder.matches("NewPassword123!", "bcrypt-hash")).thenReturn(false);
+        when(passwordEncoder.encode("NewPassword123!")).thenReturn("new-bcrypt-hash");
+        when(userRepository.save(user)).thenReturn(user);
+        AuthService authService = service();
+
+        authService.changePassword(user, new com.smartexpense.dto.ChangePasswordRequest("OldPassword123!", "NewPassword123!"));
+
+        assertEquals("new-bcrypt-hash", user.getPasswordHash());
+        verify(userRepository).save(user);
+    }
+
+    @Test
+    void changePasswordFailsWithWrongCurrentPassword() {
+        User user = new User("john@example.com", "bcrypt-hash", "John Doe");
+        when(passwordEncoder.matches("WrongPassword!", "bcrypt-hash")).thenReturn(false);
+        AuthService authService = service();
+
+        assertThrows(com.smartexpense.exception.InvalidPasswordException.class,
+                () -> authService.changePassword(user, new com.smartexpense.dto.ChangePasswordRequest("WrongPassword!", "NewPassword123!")));
+        verify(userRepository, never()).save(any());
+    }
+
     private AuthService service() {
         return new AuthService(userRepository, passwordEncoder, authenticationManager, jwtService);
     }
